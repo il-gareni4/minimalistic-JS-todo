@@ -10,7 +10,7 @@ body {
     font-family: 'Raleway', sans-serif;
 }
 .todo-list {
-    height: 90vh;
+    height: 10px;
     overflow: auto;
 }
 .bottom-bar {

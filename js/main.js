@@ -5,6 +5,13 @@ $(function () {
 
     refreshToDo();
 
+    $(".todo-list").css("height", `${window.innerHeight - 80}px`)
+
+    window.addEventListener("resize", function f() {
+        $(".todo-list").css("height", `${window.innerHeight - 80}px`)
+        console.log()
+    });
+
     function refreshToDo() {
         toDoListElem.html("");
         let i = 0;
