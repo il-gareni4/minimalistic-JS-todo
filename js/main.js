@@ -148,8 +148,6 @@ $(function () {
         }
     });
 
-
-
     $(".color").click(function (event) {
         const color = event.target.classList[0];
         const currentColor = document.body.dataset.colorScheme;
@@ -166,5 +164,9 @@ $(function () {
                 elem.addEventListener("transitionend", transEnd)
             }
         }
+    });
+
+    window.addEventListener("unload", function () {
+        localStorage.setItem("colorScheme", document.body.dataset.colorScheme);
     });
 });

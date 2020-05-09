@@ -6,6 +6,7 @@
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>ToDo</title>
+    <link rel="shortcut icon" href="svg/icon.svg" type="image/x-icon">
     <link rel="stylesheet" href="css/style.css">
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@500&display=swap" rel="stylesheet">
@@ -43,5 +44,15 @@
     </div>
 </div>
 <script src="js/main.js"></script>
+<script>
+    (function() {
+    const color = localStorage.getItem("colorScheme") ? localStorage.getItem("colorScheme") : "purple";
+    for (const elem of document.querySelectorAll("[data-color-scheme]")) {
+        elem.dataset.colorScheme = color;
+    }
+    $(".color-active")[0].classList.remove("color-active");
+    $(`.${color}`)[0].classList.add("color-active");
+})()
+</script>
 </body>
 </html>
