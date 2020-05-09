@@ -68,7 +68,6 @@ $(function () {
         editButton.classList.remove("edit");
         editButton.classList.add("ready");
         editInput.addEventListener("keydown", function(keyEvent) {
-            toDoText.textContent = editInput.value;
             if (keyEvent.key === "Enter") {
                 updateToDoReady(event)
             }
@@ -80,11 +79,12 @@ $(function () {
         const toDoText = event.target.parentElement.parentElement.firstChild.firstChild;
         const editInput = event.target.parentElement.parentElement.childNodes[2];
         const toDoNumber = toDoText.parentElement.parentElement.dataset.number;
-        editInput.hidden = true;
+        toDoText.textContent = editInput.value;
         toDo[toDoNumber].text = editInput.value;
         localStorage.setItem("toDoList", JSON.stringify(toDo));
         editButton.classList.remove("ready");
         editButton.classList.add("edit");
+        editInput.hidden = true;
     }
 
     $(".cancel").click(function () {
