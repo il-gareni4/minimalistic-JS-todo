@@ -1,0 +1,106 @@
+/* COLORS */
+
+/*purple*/
+.bottom-bar[data-color-scheme="purple"], .top[data-color-scheme="purple"] {
+    background-color: #5A48DD;
+}
+.bottom-bar__btn[data-color-scheme="purple"] {
+    background-color: #686DE0;
+}
+.todo-list[data-color-scheme="purple"] {
+    background-color: #fff;
+}
+.bottom-bar__btn[data-color-scheme="purple"]:hover {
+    background-color: #7277E5;
+}
+.bottom-bar__btn[data-color-scheme="purple"]:active {
+    background-color: #474ba7;
+}
+.checkmark[data-color-scheme="purple"] {
+    border: 2px solid #686de0;
+}
+.checkbox-container:hover input ~ .checkmark[data-color-scheme="purple"] {
+    background-color: #dadaff;
+}
+.checkbox-container input:checked ~ .checkmark[data-color-scheme="purple"] {
+    background-color: #686de0;
+}
+.todo-container[data-color-scheme="purple"] {
+    border-bottom: 2px solid #eeeeee;
+}
+.checkbox-container[data-color-scheme="purple"] {
+    color: black;
+}
+.todo-container ul li[data-color-scheme="purple"] {
+    color: #c3c2c3;
+}
+.todo-container ul li[data-color-scheme="purple"]:hover {
+    color: #6a6a6a;
+}
+.edit__input[data-color-scheme="purple"] {
+    background-color: #fff;
+    border: #686de0 solid 1px;
+    color: black;
+}
+.left-menu__main[data-color-scheme="purple"] {
+    background-color: #5a48dd;
+}
+.left-menu__btn[data-color-scheme="purple"], .color-scheme__btn[data-color-scheme="purple"] {
+    color: #1d105e;
+}
+.color-scheme__window[data-color-scheme="purple"] {
+    background-color: #7c69ff;
+    color: black;
+}
+/*dark*/
+.bottom-bar[data-color-scheme="dark"], .top[data-color-scheme="dark"] {
+    background-color: #3e4556;
+}
+.bottom-bar__btn[data-color-scheme="dark"] {
+    background-color: #4c5568;
+}
+.bottom-bar__btn[data-color-scheme="dark"]:hover {
+    background-color: #5a6379;
+}
+.bottom-bar__btn[data-color-scheme="dark"]:active {
+    background-color: #353c49;
+}
+.todo-list[data-color-scheme="dark"] {
+    background-color: #2f3542;
+}
+.checkmark[data-color-scheme="dark"] {
+    border: 2px solid #757d97;
+}
+.checkbox-container:hover input ~ .checkmark[data-color-scheme="dark"] {
+    background-color: #99a0bd;
+}
+.checkbox-container input:checked ~ .checkmark[data-color-scheme="dark"] {
+    background-color: #757d97;
+}
+.todo-container[data-color-scheme="dark"] {
+    border-bottom: 2px solid #3b4552;
+}
+.checkbox-container[data-color-scheme="dark"] {
+    color: white;
+}
+.todo-container ul li[data-color-scheme="dark"] {
+    color: #757d97;
+}
+.todo-container ul li[data-color-scheme="dark"]:hover {
+    color: #a1a8c2;
+}
+.edit__input[data-color-scheme="dark"] {
+    background-color: #2f3546;
+    border: #757d97 solid 1px;
+    color: white;
+}
+.left-menu__main[data-color-scheme="dark"] {
+    background-color: #3e4556;
+}
+.left-menu__btn[data-color-scheme="dark"], .color-scheme__btn[data-color-scheme="dark"] {
+    color: #1f242d;
+}
+.color-scheme__window[data-color-scheme="dark"] {
+    background-color: #545b6f;
+    color: white;
+}

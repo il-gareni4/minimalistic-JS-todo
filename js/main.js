@@ -5,28 +5,30 @@ $(function () {
 
     refreshToDo();
 
-    toDoListElem.css("height", `${window.innerHeight - 80}px`)
+    toDoListElem.css("height", `${window.innerHeight - 130}px`)
 
     window.addEventListener("resize", function f() {
-        toDoListElem.css("height", `${window.innerHeight - 80}px`)
+        toDoListElem.css("height", `${window.innerHeight - 130}px`)
         console.log()
     });
 
     function refreshToDo() {
         toDoListElem.html("");
         let i = 0;
+        const currentColor = document.body.dataset.colorScheme;
         for (let obj of toDo) {
             let elem = document.createElement("div");
             elem.classList.add("todo-container");
             elem.dataset.number = String(i);
-            elem.innerHTML =    `<label class="checkbox-container">${obj.text}\n
+            elem.dataset.colorScheme = currentColor;
+            elem.innerHTML =    `<label class="checkbox-container" data-color-scheme="${currentColor}">${obj.text}\n
                                     <input data-number="${i}" type="checkbox" ${obj.checked ? "checked" : ""}>\n
-                                    <span class="checkmark"></span>\n
+                                    <span class="checkmark" data-color-scheme="${currentColor}"></span>\n
                                 </label>
-                                <input class="edit__input" type="text" value="" hidden>
+                                <input class="edit__input" type="text" value="" data-color-scheme="${currentColor}" hidden>
                                 <ul>
-                                    <li class="edit"></li>
-                                    <li class="delete"></li>
+                                    <li class="edit" data-color-scheme="${currentColor}"></li>
+                                    <li class="delete" data-color-scheme="${currentColor}"></li>
                                 </ul>`;
             toDoListElem[0].insertAdjacentElement("afterbegin", elem);
             i++;
@@ -46,7 +48,7 @@ $(function () {
     }
 
     function deleteToDo(event) {
-        const number = event.originalEvent.path[2].dataset.number;
+        const number = +event.originalEvent.path[2].dataset.number;
         toDo.splice(number, 1);
         localStorage.setItem("toDoList", JSON.stringify(toDo));
         refreshToDo();
@@ -102,5 +104,54 @@ $(function () {
         }
     });
 
+    $(".left-menu__btn").click(function () {
+        const leftButton = $(".left-menu__btn");
+        if (leftButton[0].dataset.active === "false") {
+            $(".wrapper").css("left", "100px");
+            $(".left-menu__main").css("left", "0");
+            leftButton.css("left", "108px");
+            leftButton[0].dataset.active = "true";
+        } else {
+            $(".wrapper").css("left", "0");
+            $(".left-menu__main").css("left", "-100px");
+            leftButton.css("left", "8px");
+            leftButton[0].dataset.active = "false";
+        }
+    });
 
+    $('.color-scheme__btn').click(function (event) {
+        if (event.target.className === "color-scheme__btn") {
+            if (event.target.dataset.active === "false") {
+                event.target.dataset.active = "true";
+            } else {
+                event.target.dataset.active = "false";
+            }
+        }
+    });
+
+    document.addEventListener("click", function (event) {
+        const button = $(".color-scheme__btn")[0];
+        if (!Object.entries(event.path).map(arr => arr[1]).includes(button)) {
+            button.dataset.active = "false";
+        }
+    });
+
+    $(".color").click(function (event) {
+        const color = event.target.classList[0];
+        const currentColor = document.body.dataset.colorScheme;
+        $('.color-active')[0].classList.remove("color-active");
+        event.target.classList.add("color-active");
+        function transEnd(event) {
+            event.target.style.transition = "";
+            event.target.removeEventListener("transitionend", transEnd)
+        }
+        for (const elem of document.querySelectorAll("[data-color-scheme]")) {
+            if (color !== currentColor) {
+                elem.dataset.colorScheme = color;
+                elem.style.transition = "background-color 0.5s, color 0.6s, border 0.6s";
+                console.log(elem.classList.contains("left-menu__main"))
+                elem.addEventListener("transitionend", transEnd)
+            }
+        }
+    });
 });

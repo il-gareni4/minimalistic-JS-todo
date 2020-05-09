@@ -10,18 +10,37 @@
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@500&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/fonts.css">
+    <link rel="stylesheet" href="css/colors.css">
 </head>
-<body>
-<div class="todo-list">
-</div>
-<div class="bottom-bar">
-    <label>
-        <input type="text" class="bottom-bar__input" placeholder="What to do?">
-    </label>
-    <div class="cancel" style="display: none"></div>
-    <button class="bottom-bar__btn">
-        <div class="plus"></div>
-    </button>
+<body data-color-scheme="purple">
+<div class="wrapper">
+    <div class="top" data-color-scheme="purple"></div>
+
+    <div class="left-menu">
+        <div class="left-menu__main" data-color-scheme="purple">
+            <div class="color-scheme__btn" data-active="false" data-color-scheme="purple">
+                <div class="color-scheme__window" data-color-scheme="purple">
+                    <ul>
+                        <li class="dark color">Dark</li>
+                        <li class="purple color color-active">Purple</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="left-menu__btn" data-active="false" data-color-scheme="purple"></div>
+    </div>
+
+    <div class="todo-list" data-color-scheme="purple"></div>
+
+    <div class="bottom-bar" data-color-scheme="purple">
+        <label>
+            <input type="text" class="bottom-bar__input" placeholder="What to do?">
+        </label>
+        <div class="cancel" style="display: none"></div>
+        <button class="bottom-bar__btn" data-color-scheme="purple">
+            <div class="plus"></div>
+        </button>
+    </div>
 </div>
 <script src="js/main.js"></script>
 </body>
