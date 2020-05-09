@@ -30,10 +30,10 @@ body {
     bottom: 50%;
     transform: translateY(50%);
     margin-left: 2vw;
-    padding: 10px 2vmin 10px;
+    padding: 7px 2vmin 7px;
     box-shadow: 0 4px 5px rgba(0, 0, 0, 0.25);
     border-radius: 50px;
-    font-size: 15px;
+    font-size: 20px;
     font-family: 'Raleway', sans-serif;
 }
 .bottom-bar__btn {
@@ -140,14 +140,36 @@ body {
     margin-right: 20px;
     user-select: none;
 }
-.edit, .delete {
+.todo-container ul li {
     display: inline-block;
     cursor: pointer;
+    font-size: 20px;
+    color: #c3c2c3;
+    font-family: 'icomoon';
+}
+.todo-container ul li:hover {
+    color: #6a6a6a;
+}
+.edit:after {
+    content: "\e905";
+}
+.edit {
+    transform: translateY(1px);
+}
+.delete:after {
+    content: "\e900";
+}
+.delete {
+    transform: rotate(45deg);
+    margin-left: 20px;
+}
+.ready:after {
+    content: "\ea10";
 }
 .edit__input {
     position: absolute;
     top: 50%;
-    transform: translateY(-49%);
+    transform: translateY(-47%);
     left: 49px;
     border: #686de0 solid 1px;
     padding-left: 5px;
