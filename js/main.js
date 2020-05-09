@@ -87,13 +87,17 @@ $(function () {
         $(".cancel").css("display", "none");
     });
 
-    $(".bottom-bar__btn").click(function () {
-        toDo.push({text: input.value, checked: false})
-        localStorage.setItem("toDoList", JSON.stringify(toDo));
-        input.value = "";
-        $(".cancel").css("display", "none");
-        refreshToDo();
-    });
+    $(".bottom-bar__btn").click(addToDo);
+
+    function addToDo() {
+        if (input.value) {
+            toDo.push({text: input.value, checked: false})
+            localStorage.setItem("toDoList", JSON.stringify(toDo));
+            input.value = "";
+            $(".cancel").css("display", "none");
+            refreshToDo();
+        }
+    }
 
     input.addEventListener("input", function () {
         if (input.value === "") {
@@ -101,6 +105,10 @@ $(function () {
         } else {
             $(".cancel").css("display", "block");
         }
+    });
+
+    input.addEventListener("keydown", function (event) {
+        if (event.key === "Enter") addToDo();
     });
 
     $(".left-menu__btn").click(function () {
