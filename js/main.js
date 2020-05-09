@@ -1,7 +1,7 @@
 $(function () {
     const toDo = localStorage.getItem("toDoList") ? JSON.parse(localStorage.getItem("toDoList")) : [];
     const input = $(".bottom-bar__input")[0];
-    const toDoListElem =  $(".todo-list");
+    const toDoListElem = $(".todo-list");
 
     refreshToDo();
 
@@ -9,7 +9,6 @@ $(function () {
 
     window.addEventListener("resize", function f() {
         toDoListElem.css("height", `${window.innerHeight - 130}px`)
-        console.log()
     });
 
     function refreshToDo() {
@@ -48,7 +47,7 @@ $(function () {
     }
 
     function deleteToDo(event) {
-        const number = +event.originalEvent.path[2].dataset.number;
+        const number = +event.target.parentElement.parentElement.dataset.number;
         toDo.splice(number, 1);
         localStorage.setItem("toDoList", JSON.stringify(toDo));
         refreshToDo();
@@ -56,8 +55,8 @@ $(function () {
 
     function updateToDo(event) {
         const editButton =  event.target;
-        const toDoText = event.originalEvent.path[2].firstChild.firstChild;
-        const editInput = event.originalEvent.path[2].childNodes[2];
+        const toDoText = event.target.parentElement.parentElement.firstChild.firstChild;
+        const editInput = event.target.parentElement.parentElement.childNodes[2];
         editInput.value = toDoText.textContent.trim();
         editInput.hidden = false;
         editInput.focus();
@@ -73,8 +72,8 @@ $(function () {
 
     function updateToDoReady(event) {
         const editButton =  event.target;
-        const toDoText = event.originalEvent.path[2].firstChild.firstChild;
-        const editInput = event.originalEvent.path[2].childNodes[2];
+        const toDoText = event.target.parentElement.parentElement.firstChild.firstChild;
+        const editInput = event.target.parentElement.parentElement.childNodes[2];
         const toDoNumber = toDoText.parentElement.parentElement.dataset.number;
         editInput.hidden = true;
         toDo[toDoNumber].text = editInput.value;
@@ -131,10 +130,12 @@ $(function () {
 
     document.addEventListener("click", function (event) {
         const button = $(".color-scheme__btn")[0];
-        if (!Object.entries(event.path).map(arr => arr[1]).includes(button)) {
+        if (!Object.entries(event.composedPath()).map(arr => arr[1]).includes(button)) {
             button.dataset.active = "false";
         }
     });
+
+
 
     $(".color").click(function (event) {
         const color = event.target.classList[0];
@@ -149,7 +150,6 @@ $(function () {
             if (color !== currentColor) {
                 elem.dataset.colorScheme = color;
                 elem.style.transition = "background-color 0.5s, color 0.6s, border 0.6s";
-                console.log(elem.classList.contains("left-menu__main"))
                 elem.addEventListener("transitionend", transEnd)
             }
         }
