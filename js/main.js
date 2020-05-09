@@ -5,10 +5,15 @@ $(function () {
 
     refreshToDo();
 
-    toDoListElem.css("height", `${window.innerHeight - 130}px`)
+    toDoListElem.css("height", `${window.innerHeight - 130}px`);
+    input.style.width = `${window.innerWidth - 20 - 80}px`;
 
     window.addEventListener("resize", function f() {
-        toDoListElem.css("height", `${window.innerHeight - 130}px`)
+        toDoListElem.css("height", `${window.innerHeight - 130}px`);
+        input.style.width = `${window.innerWidth - 20 - 80}px`;
+        for (const elem of document.querySelectorAll(".edit__input")) {
+            elem.style.width = `${window.innerWidth - 100 - 55}px`;
+        }
     });
 
     function refreshToDo() {
@@ -24,7 +29,7 @@ $(function () {
                                     <input data-number="${i}" type="checkbox" ${obj.checked ? "checked" : ""}>\n
                                     <span class="checkmark" data-color-scheme="${currentColor}"></span>\n
                                 </label>
-                                <input class="edit__input" type="text" value="" data-color-scheme="${currentColor}" hidden>
+                                <input class="edit__input" type="text" value="" data-color-scheme="${currentColor}" style="width: ${window.innerWidth - 100 - 55}px" hidden>
                                 <ul>
                                     <li class="edit" data-color-scheme="${currentColor}"></li>
                                     <li class="delete" data-color-scheme="${currentColor}"></li>

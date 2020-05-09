@@ -23,15 +23,14 @@ body {
     box-shadow: 0 -4px 4px rgba(0, 0, 0, 0.25);
 }
 .bottom-bar__input {
-    width: 90vw;
     outline: none;
     border: none;
     user-select: none;
     position: absolute;
     bottom: 50%;
     transform: translateY(50%);
-    margin-left: 2vw;
-    padding: 7px 2vmin 7px;
+    margin-left: 20px;
+    padding: 7px 15px 7px;
     box-shadow: 0 4px 5px rgba(0, 0, 0, 0.25);
     border-radius: 50px;
     font-size: 20px;
@@ -39,7 +38,7 @@ body {
 }
 .bottom-bar__btn {
     position: absolute;
-    right: 2vw;
+    right: 20px;
     height: 40px;
     width: 40px;
     border-radius: 50%;
@@ -68,9 +67,8 @@ body {
     height: 25px;
     background-image: url("../svg/cancel.svg");
     bottom: 50%;
-    transform: translate(-150%, 50%);
-    margin-left: 2vw;
-    left: 90vw;
+    transform: translateY(50%);
+    right: 90px;
     cursor: pointer;
 }
 .cancel:hover {
