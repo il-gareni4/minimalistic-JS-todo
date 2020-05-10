@@ -1,17 +1,16 @@
 $(function () {
     const toDo = localStorage.getItem("toDoList") ? JSON.parse(localStorage.getItem("toDoList")) : [];
-    const input = $(".bottom-bar__input")[0];
-    const input2 = $(".bottom-bar__input");
+    const input = $(".bottom-bar__input");
     const toDoListElem = $(".todo-list");
 
     refreshToDo();
 
     toDoListElem.height(window.innerHeight - 130);
-    input2.width($(window).width() - 20 - 110);
+    input.width($(window).width() - 20 - 110);
 
     window.addEventListener("resize", function f() {
         toDoListElem.height(window.innerHeight - 130);
-        input2.width($(window).width() - 20 - 110);
+        input.width($(window).width() - 20 - 110);
         $(".edit__input").each((i, elem) => elem.style.width = `${window.innerWidth - 100 - 55}px`)
     });
 
@@ -88,31 +87,31 @@ $(function () {
     }
 
     $(".cancel").click(function () {
-        input2.val("");
+        input.val("");
         $(".cancel").css("display", "none");
     });
 
     $(".bottom-bar__btn").click(addToDo);
 
     function addToDo() {
-        if (input2.val()) {
-            toDo.push({text: input.value, checked: false})
+        if (input.val()) {
+            toDo.push({text: input.val(), checked: false})
             localStorage.setItem("toDoList", JSON.stringify(toDo));
-            input2.val("");
+            input.val("");
             $(".cancel").css("display", "none");
             refreshToDo();
         }
     }
 
-    input2[0].addEventListener("input", function () {
-        if (input.value === "") {
-            $(".cancel").css("display", "none");
-        } else {
+    input[0].addEventListener("input", function () {
+        if (input.val()) {
             $(".cancel").css("display", "block");
+        } else {
+            $(".cancel").css("display", "none");
         }
     });
 
-    input2.keydown(function (event) {
+    input.keydown(function (event) {
         if (event.key === "Enter") addToDo();
     });
 
