@@ -1,25 +1,24 @@
 $(function () {
     const toDo = localStorage.getItem("toDoList") ? JSON.parse(localStorage.getItem("toDoList")) : [];
     const input = $(".bottom-bar__input")[0];
+    const input2 = $(".bottom-bar__input");
     const toDoListElem = $(".todo-list");
 
     refreshToDo();
 
-    toDoListElem.css("height", `${window.innerHeight - 130}px`);
-    input.style.width = `${window.innerWidth - 20 - 80}px`;
+    toDoListElem.height(window.innerHeight - 130);
+    input2.width($(window).width() - 20 - 110);
 
     window.addEventListener("resize", function f() {
-        toDoListElem.css("height", `${window.innerHeight - 130}px`);
-        input.style.width = `${window.innerWidth - 20 - 80}px`;
-        for (const elem of document.querySelectorAll(".edit__input")) {
-            elem.style.width = `${window.innerWidth - 100 - 55}px`;
-        }
+        toDoListElem.height(window.innerHeight - 130);
+        input2.width($(window).width() - 20 - 110);
+        $(".edit__input").each((i, elem) => elem.style.width = `${window.innerWidth - 100 - 55}px`)
     });
 
     function refreshToDo() {
         toDoListElem.html("");
+        const currentColor = $("body").data("colorScheme");
         let i = 0;
-        const currentColor = document.body.dataset.colorScheme;
         for (let obj of toDo) {
             let elem = document.createElement("div");
             elem.classList.add("todo-container");
@@ -40,71 +39,72 @@ $(function () {
     }
 
     toDoListElem.click(function (event) {
-        if (event.target.tagName === "INPUT" && event.target.type === "checkbox") setCheckbox(event);
-        else if (event.target.tagName === "LI" && event.target.classList.contains("delete")) deleteToDo(event);
-        else if (event.target.tagName === "LI" && event.target.classList.contains("edit")) updateToDo(event);
-        else if (event.target.tagName === "LI" && event.target.classList.contains("ready")) updateToDoReady(event);
+        const target = $(event.target)
+        if (target.is("input") && target.attr("type") === "checkbox") setCheckboxState(target);
+        else if (target.is("li") && target.hasClass("delete")) deleteToDo(target);
+        else if (target.is("li") && target.hasClass("edit")) updateToDo(target);
+        else if (target.is("li") && target.hasClass("ready")) updateToDoReady(target);
     });
 
-    function setCheckbox(event) {
-        toDo[+event.target.dataset.number].checked = event.target.checked;
+    function setCheckboxState(target) {
+        toDo[+target.data("number")].checked = target.prop("checked");
         localStorage.setItem("toDoList", JSON.stringify(toDo));
     }
 
-    function deleteToDo(event) {
-        const number = +event.target.parentElement.parentElement.dataset.number;
+    function deleteToDo(target) {
+        const number = +target.parents(".todo-container").data("number");
         toDo.splice(number, 1);
         localStorage.setItem("toDoList", JSON.stringify(toDo));
         refreshToDo();
     }
 
-    function updateToDo(event) {
-        const editButton =  event.target;
-        const toDoText = event.target.parentElement.parentElement.firstChild.firstChild;
-        const editInput = event.target.parentElement.parentElement.childNodes[2];
-        editInput.value = toDoText.textContent.trim();
-        editInput.hidden = false;
+    function updateToDo(target) {
+        const editButton =  target;
+        const toDoText = target.parents(".todo-container").children(".checkbox-container");
+        const editInput = target.parents(".todo-container").children(".edit__input");
+        editInput.val(toDoText[0].textContent.trim());
+        editInput.show();
         editInput.focus();
-        editButton.classList.remove("edit");
-        editButton.classList.add("ready");
-        editInput.addEventListener("keydown", function(keyEvent) {
+        editButton.removeClass("edit");
+        editButton.addClass("ready");
+        editInput.keydown(function(keyEvent) {
             if (keyEvent.key === "Enter") {
-                updateToDoReady(event)
+                updateToDoReady(target)
             }
         });
     }
 
-    function updateToDoReady(event) {
-        const editButton =  event.target;
-        const toDoText = event.target.parentElement.parentElement.firstChild.firstChild;
-        const editInput = event.target.parentElement.parentElement.childNodes[2];
-        const toDoNumber = toDoText.parentElement.parentElement.dataset.number;
-        toDoText.textContent = editInput.value;
-        toDo[toDoNumber].text = editInput.value;
+    function updateToDoReady(target) {
+        const editButton =  target;
+        const toDoText = target.parents(".todo-container").children(".checkbox-container")[0].firstChild;
+        const editInput = target.parents(".todo-container").children(".edit__input");
+        const toDoNumber = target.parents(".todo-container").data("number");
+        toDoText.textContent = editInput.val();
+        toDo[+toDoNumber].text = editInput.val();
         localStorage.setItem("toDoList", JSON.stringify(toDo));
-        editButton.classList.remove("ready");
-        editButton.classList.add("edit");
-        editInput.hidden = true;
+        editButton.removeClass("ready");
+        editButton.addClass("edit");
+        editInput.hide();
     }
 
     $(".cancel").click(function () {
-        input.value = "";
+        input2.val("");
         $(".cancel").css("display", "none");
     });
 
     $(".bottom-bar__btn").click(addToDo);
 
     function addToDo() {
-        if (input.value) {
+        if (input2.val()) {
             toDo.push({text: input.value, checked: false})
             localStorage.setItem("toDoList", JSON.stringify(toDo));
-            input.value = "";
+            input2.val("");
             $(".cancel").css("display", "none");
             refreshToDo();
         }
     }
 
-    input.addEventListener("input", function () {
+    input2[0].addEventListener("input", function () {
         if (input.value === "") {
             $(".cancel").css("display", "none");
         } else {
@@ -112,21 +112,21 @@ $(function () {
         }
     });
 
-    input.addEventListener("keydown", function (event) {
+    input2.keydown(function (event) {
         if (event.key === "Enter") addToDo();
     });
 
     $(".left-menu__btn").click(function () {
         const leftButton = $(".left-menu__btn");
         if (leftButton[0].dataset.active === "false") {
-            $(".wrapper").css("left", "100px");
-            $(".left-menu__main").css("left", "0");
-            leftButton.css("left", "108px");
+            $(".wrapper").css("left", "+=100px");
+            $(".left-menu__main").css("left", "+=100px");
+            leftButton.css("left", "+=100px");
             leftButton[0].dataset.active = "true";
         } else {
-            $(".wrapper").css("left", "0");
-            $(".left-menu__main").css("left", "-100px");
-            leftButton.css("left", "8px");
+            $(".wrapper").css("left", "-=100px");
+            $(".left-menu__main").css("left", "-=100px");
+            leftButton.css("left", "-=100px");
             leftButton[0].dataset.active = "false";
         }
     });
@@ -160,7 +160,7 @@ $(function () {
         for (const elem of document.querySelectorAll("[data-color-scheme]")) {
             if (color !== currentColor) {
                 elem.dataset.colorScheme = color;
-                elem.style.transition = "background-color 0.5s, color 0.6s, border 0.6s";
+                elem.style.transition = "background-color 0.2s, color 0.3s, border 0.3s";
                 elem.addEventListener("transitionend", transEnd)
             }
         }
