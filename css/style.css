@@ -79,6 +79,7 @@ body {
     width: 100%;
     height: 50px;
     position: relative;
+    z-index: 1;
 }
 .checkbox-container {
     display: block;
@@ -193,12 +194,13 @@ body {
     overflow-x: hidden;
 
 }
-.top {
+.top-bar {
     width: 100%;
     height: 50px;
     position: fixed;
     top: 0;
     box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+    z-index: 3;
 }
 .color-scheme__btn {
     position: absolute;
@@ -249,12 +251,12 @@ body {
     background-color: #fff;
     border: #ced6e0 1px solid;
 }
-.color-scheme__btn[data-active="false"] > .color-scheme__window {
+.color-scheme__btn[data-active="false"] > .color-scheme__window, .top-bar__sort-btn[data-active="false"] ~ .top-bar__sort-window{
     opacity: 0;
     visibility: hidden;
     transition: opacity 0.3s, visibility 0.3s 0.3s;
 }
-.color-scheme__btn[data-active="true"] > .color-scheme__window {
+.color-scheme__btn[data-active="true"] > .color-scheme__window, .top-bar__sort-btn[data-active="true"] ~ .top-bar__sort-window {
     opacity: 100;
     visibility: visible;
     transition: opacity 0.3s;
@@ -271,6 +273,45 @@ body {
 .wrongAnim {
     animation: wrong 0.6s ease-out;
 }
+.top-bar__sort-btn {
+    font-size: 30px;
+    position: absolute;
+    right: 10px;
+    top: 8px;
+    transition: left 0.5s, transform 0.2s;
+    z-index: 5;
+    cursor: pointer;
+}
+.top-bar__sort-btn:after {
+    font-family: 'icomoon';
+    content: "\ea48";
+}
+.top-bar__sort-btn:hover {
+    transform: scale(1.1);
+}
+.top-bar__sort-window {
+    width: 150px;
+    position: absolute;
+    font-size: 20px;
+    background-color: #fff;
+    padding: 5px 5px 7px 10px;
+    top: 40px;
+    right: 40px;
+    border-radius: 10px 0 10px 10px;
+}
+.sort_param {
+    list-style: none;
+    cursor: pointer;
+}
+.sort_by-name:before {
+    position: relative;
+    top: 3px;
+    font-size: 24px;
+    margin-right: 10px;
+    font-family: 'icomoon';
+    content: "\e903";
+}
+
 
 @keyframes wrong {
     25% {

@@ -148,6 +148,22 @@ $(function () {
         }
     });
 
+    $('.top-bar__sort-btn').click(function (event) {
+        if (event.target.className === "top-bar__sort-btn") {
+            if (event.target.dataset.active === "false") {
+                event.target.dataset.active = "true";
+            } else {
+                event.target.dataset.active = "false";
+            }
+        }
+    });
+
+    $(".sort_by-name").click(function () {
+        toDo.sort(((a, b) => b.text.localeCompare(a.text)));
+        localStorage.setItem("toDoList", JSON.stringify(toDo));
+        refreshToDo();
+    });
+
     document.addEventListener("click", function (event) {
         const button = $(".color-scheme__btn")[0];
         if (!Object.entries(event.composedPath()).map(arr => arr[1]).includes(button)) {
@@ -167,7 +183,7 @@ $(function () {
         for (const elem of document.querySelectorAll("[data-color-scheme]")) {
             if (color !== currentColor) {
                 elem.dataset.colorScheme = color;
-                elem.style.transition = "background-color 0.2s, color 0.3s, border 0.3s";
+                elem.style.transition = "background-color 0.1s, color 0.15s, border 0.15s";
                 elem.addEventListener("transitionend", transEnd)
             }
         }

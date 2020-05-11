@@ -1,7 +1,7 @@
 /* COLORS */
 
 /*purple*/
-.bottom-bar[data-color-scheme="purple"], .top[data-color-scheme="purple"] {
+.bottom-bar[data-color-scheme="purple"], .top-bar[data-color-scheme="purple"] {
     background-color: #5A48DD;
 }
 .bottom-bar__btn[data-color-scheme="purple"] {
@@ -45,15 +45,15 @@
 .left-menu__main[data-color-scheme="purple"] {
     background-color: #5a48dd;
 }
-.left-menu__btn[data-color-scheme="purple"], .color-scheme__btn[data-color-scheme="purple"] {
+.left-menu__btn[data-color-scheme="purple"], .color-scheme__btn[data-color-scheme="purple"], .top-bar__sort-btn[data-color-scheme="purple"] {
     color: #1d105e;
 }
-.color-scheme__window[data-color-scheme="purple"] {
+.color-scheme__window[data-color-scheme="purple"], .top-bar__sort-window[data-color-scheme="purple"] {
     background-color: #7c69ff;
     color: black;
 }
 /*dark*/
-.bottom-bar[data-color-scheme="dark"], .top[data-color-scheme="dark"] {
+.bottom-bar[data-color-scheme="dark"], .top-bar[data-color-scheme="dark"] {
     background-color: #3e4556;
 }
 .bottom-bar__btn[data-color-scheme="dark"] {
@@ -97,10 +97,10 @@
 .left-menu__main[data-color-scheme="dark"] {
     background-color: #3e4556;
 }
-.left-menu__btn[data-color-scheme="dark"], .color-scheme__btn[data-color-scheme="dark"] {
+.left-menu__btn[data-color-scheme="dark"], .color-scheme__btn[data-color-scheme="dark"], .top-bar__sort-btn[data-color-scheme="dark"] {
     color: #1f242d;
 }
-.color-scheme__window[data-color-scheme="dark"] {
+.color-scheme__window[data-color-scheme="dark"], .top-bar__sort-window[data-color-scheme="dark"] {
     background-color: #545b6f;
     color: white;
 }

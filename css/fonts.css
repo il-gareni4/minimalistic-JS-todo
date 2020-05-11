@@ -25,14 +25,21 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+
 .icon-add:before {
   content: "\e900";
+}
+.icon-title:before {
+  content: "\e903";
 }
 .icon-color_lens:before {
   content: "\e902";
 }
 .icon-settings:before {
   content: "\e901";
+}
+.icon-calendar_today:before {
+  content: "\e904";
 }
 .icon-pencil:before {
   content: "\e905";
@@ -42,4 +49,7 @@
 }
 .icon-checkmark:before {
   content: "\ea10";
+}
+.icon-sort-alpha-asc:before {
+  content: "\ea48";
 }
