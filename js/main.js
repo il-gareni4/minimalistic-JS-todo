@@ -99,7 +99,15 @@ $(function () {
             localStorage.setItem("toDoList", JSON.stringify(toDo));
             input.val("");
             $(".cancel").css("display", "none");
+            input[0].placeholder = "What to do?"
             refreshToDo();
+        } else {
+            function endAnim(event) {
+                event.target.classList.remove("wrongAnim")
+            }
+            input.addClass("wrongAnim");
+            input[0].placeholder = "Enter ToDo"
+            input[0].addEventListener("animationend", endAnim)
         }
     }
 

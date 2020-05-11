@@ -268,3 +268,15 @@ body {
 .color-active:before {
     border: #6ab04c 2px solid;
 }
+.wrongAnim {
+    animation: wrong 0.6s ease-out;
+}
+
+@keyframes wrong {
+    25% {
+        background-color: #ef7878;
+    }
+    100% {
+        background-color: white;
+    }
+}
