@@ -159,7 +159,14 @@ $(function () {
     });
 
     $(".sort_by-name").click(function () {
-        toDo.sort(((a, b) => b.text.localeCompare(a.text)));
+        const sortBtn = $(".sort_by-name")[0]
+        if (sortBtn.dataset.direction === "down") {
+            toDo.sort(((a, b) => b.text.localeCompare(a.text)));
+            sortBtn.dataset.direction = "up"
+        } else {
+            toDo.sort(((a, b) => a.text.localeCompare(b.text)));
+            sortBtn.dataset.direction = "down"
+        }
         localStorage.setItem("toDoList", JSON.stringify(toDo));
         refreshToDo();
     });

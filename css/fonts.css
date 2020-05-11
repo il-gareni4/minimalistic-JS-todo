@@ -53,3 +53,10 @@
 .icon-sort-alpha-asc:before {
   content: "\ea48";
 }
+.icon-sort-alpha-desc:before {
+  content: "\ea49";
+}
+.icon-sort-amount-asc:before {
+  content: "\ea4c";
+}
+

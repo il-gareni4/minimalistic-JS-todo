@@ -284,17 +284,16 @@ body {
 }
 .top-bar__sort-btn:after {
     font-family: 'icomoon';
-    content: "\ea48";
+    content: "\ea4c";
 }
 .top-bar__sort-btn:hover {
     transform: scale(1.1);
 }
 .top-bar__sort-window {
-    width: 150px;
     position: absolute;
     font-size: 20px;
     background-color: #fff;
-    padding: 5px 5px 7px 10px;
+    padding: 5px 10px 7px 10px;
     top: 40px;
     right: 40px;
     border-radius: 10px 0 10px 10px;
@@ -309,8 +308,14 @@ body {
     font-size: 24px;
     margin-right: 10px;
     font-family: 'icomoon';
-    content: "\e903";
 }
+.sort_by-name[data-direction="down"]:before {
+    content: "\ea49";
+}
+.sort_by-name[data-direction="up"]:before {
+    content: "\ea48";
+}
+
 
 
 @keyframes wrong {
